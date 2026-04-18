@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YOUR NAME | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    /*
+    ================================================
+      FILL-IN GUIDE
+      Search for [FILL] to find every spot
+      you need to personalise in this file.
+    ================================================
+    */
+
+    :root {
+      --navy:       #0b1c3d;
+      --navy-mid:   #122348;
+      --navy-light: #1a3260;
+      --navy-pale:  #e8eef8;
+      --white:      #ffffff;
+      --accent:     #2f6de0;
+      --accent-alt: #5b9bf8;
+      --text-dark:  #0b1c3d;
+      --text-muted: #5a6a8a;
+      --border:     rgba(11,28,61,.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--navy-pale); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 5%; height: 68px;
+      background: var(--navy);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 900;
+      color: var(--white); letter-spacing: 1px;
+    }
+    .nav-logo span { color: var(--accent-alt); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: rgba(255,255,255,.7);
+      font-size: 13px; font-weight: 500;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      transition: color .25s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: var(--accent-alt);
+      transition: width .25s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      background: var(--navy);
+      padding: 80px 5% 60px;
+      position: relative; overflow: hidden;
+    }
+    #home::before {
+      content: ''; position: absolute; top: -120px; right: -120px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(47,109,224,.18) 0%, transparent 65%);
+    }
+    #home::after {
+      content: ''; position: absolute; bottom: -80px; left: 10%;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(91,155,248,.12) 0%, transparent 70%);
+    }
+    .hero-inner {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 60px;
+      width: 100%; max-width: 1100px; margin: 0 auto;
+      animation: fadeUp .9s ease both;
+    }
+    .hero-text { flex: 1; }
+    .hero-greeting {
+      font-size: 15px; font-weight: 400;
+      color: var(--accent-alt);
+      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px;
+    }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 900; line-height: 1.05; color: var(--white);
+    }
+    .hero-name span { color: var(--accent-alt); }
+    .hero-tagline {
+      font-size: 18px; font-weight: 300;
+      color: rgba(255,255,255,.65);
+      margin: 18px 0 32px; max-width: 480px; line-height: 1.7;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; text-decoration: none;
+      padding: 13px 30px; border-radius: 6px;
+      font-size: 14px; font-weight: 500;
+      cursor: pointer; border: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+    .btn-solid { background: var(--accent); color: #fff; }
+    .btn-outline {
+      background: transparent; color: #fff;
+      border: 1.5px solid rgba(255,255,255,.4);
+    }
+    .btn-outline:hover { border-color: #fff; }
+
+    .hero-photo-wrap {
+      flex-shrink: 0;
+      width: 260px; height: 260px; border-radius: 50%;
+      border: 4px solid var(--accent-alt); overflow: hidden;
+      box-shadow: 0 0 60px rgba(47,109,224,.35);
+    }
+    .hero-photo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-photo-placeholder {
+      width: 100%; height: 100%;
+      background: var(--navy-light);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 8px; color: rgba(255,255,255,.4);
+      font-size: 12px; text-align: center; padding: 20px;
+    }
+
+    .social-row { display: flex; gap: 14px; margin-top: 32px; }
+    .social-link {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,.25);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: rgba(255,255,255,.7);
+      font-size: 12px; font-weight: 600;
+      transition: all .25s;
+    }
+    .social-link:hover {
+      background: var(--accent); border-color: var(--accent);
+      color: #fff; transform: translateY(-3px);
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 90px 5%; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 12px; font-weight: 500; color: var(--accent);
+      letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700; color: var(--navy); margin-bottom: 16px;
+    }
+    .section-divider {
+      width: 50px; height: 3px; background: var(--accent);
+      border-radius: 2px; margin-bottom: 40px;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--navy-pale); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1.6fr;
+      gap: 60px; align-items: center;
+    }
+    .about-img-wrap {
+      border-radius: 12px; overflow: hidden;
+      border: 3px solid var(--accent); aspect-ratio: 4/5;
+    }
+    .about-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .about-img-placeholder {
+      width: 100%; height: 100%; min-height: 320px;
+      background: var(--navy-light);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 10px; color: rgba(255,255,255,.4);
+      font-size: 12px; text-align: center; padding: 20px;
+    }
+    .about-text p {
+      font-size: 15px; color: var(--text-muted);
+      line-height: 1.85; margin-bottom: 16px;
+    }
+    .about-facts {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin-top: 28px;
+    }
+    .fact {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 8px; padding: 14px 18px;
+    }
+    .fact-label { font-size: 11px; color: var(--accent); font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
+    .fact-value { font-size: 15px; color: var(--navy); font-weight: 500; margin-top: 4px; }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--white); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .skill-card {
+      background: var(--navy-pale); border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px;
+      transition: transform .25s, box-shadow .25s, background .25s;
+    }
+    .skill-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(11,28,61,.12);
+      background: var(--navy);
+    }
+    .skill-card:hover .skill-name,
+    .skill-card:hover .skill-level { color: #fff; }
+    .skill-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px; font-size: 20px;
+    }
+    .skill-name { font-size: 15px; font-weight: 500; color: var(--navy); }
+    .skill-level { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .skill-bar {
+      margin-top: 12px; height: 4px; border-radius: 2px;
+      background: rgba(11,28,61,.12);
+    }
+    .skill-fill { height: 100%; border-radius: 2px; background: var(--accent); }
+
+    /* ── HOBBIES ── */
+    #hobbies { background: var(--navy); }
+    #hobbies .section-title { color: var(--white); }
+    #hobbies .section-label { color: var(--accent-alt); }
+    .hobbies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+    }
+    .hobby-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 12px; padding: 28px 20px; text-align: center;
+      transition: background .25s, transform .25s;
+    }
+    .hobby-card:hover {
+      background: rgba(47,109,224,.25); transform: translateY(-4px);
+      border-color: rgba(91,155,248,.4);
+    }
+    .hobby-emoji { font-size: 36px; margin-bottom: 12px; }
+    .hobby-name { font-size: 15px; font-weight: 500; color: #fff; }
+    .hobby-desc { font-size: 12px; color: rgba(255,255,255,.5); margin-top: 6px; line-height: 1.6; }
+
+
+    /* ── CONTACT ── */
+    #contact { background: var(--white); }
+    .contact-wrap {
+      display: grid; grid-template-columns: 1fr 1.4fr;
+      gap: 60px; align-items: start;
+    }
+    .contact-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px; color: var(--navy); margin-bottom: 14px;
+    }
+    .contact-info p { font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px; }
+    .contact-item { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 18px; }
+    .contact-icon {
+      width: 42px; height: 42px; flex-shrink: 0;
+      background: var(--navy-pale); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; font-size: 18px;
+    }
+    .contact-detail-label { font-size: 11px; color: var(--accent); font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
+    .contact-detail-value { font-size: 14px; color: var(--navy); margin-top: 2px; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+    .field input, .field textarea {
+      background: var(--navy-pale); border: 1.5px solid var(--border);
+      border-radius: 8px; padding: 11px 14px;
+      font-size: 14px; color: var(--navy);
+      font-family: 'DM Sans', sans-serif;
+      outline: none; transition: border .2s;
+    }
+    .field input:focus, .field textarea:focus { border-color: var(--accent); }
+    .field textarea { resize: vertical; min-height: 120px; }
+    .form-submit {
+      background: var(--navy); color: #fff; border: none;
+      padding: 14px 32px; border-radius: 8px;
+      font-size: 14px; font-weight: 500; cursor: pointer;
+      align-self: flex-start; transition: background .25s, transform .2s;
+    }
+    .form-submit:hover { background: var(--accent); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy); padding: 30px 5%; text-align: center;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .footer-text { font-size: 13px; color: rgba(255,255,255,.4); }
+    .footer-text span { color: var(--accent-alt); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width: 768px) {
+      .hero-inner { flex-direction: column-reverse; text-align: center; }
+      .hero-btns, .social-row { justify-content: center; }
+      .about-grid, .contact-wrap { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-photo-wrap { width: 200px; height: 200px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════
+  NAVBAR
+  [FILL] Change "YN" to your own initials
+════════════════════════════════════ -->
+<nav>
+  <div class="nav-logo"><span>PL</span>.</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#hobbies">Hobbies</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+
+<!-- ════════════════════════════════════
+  HERO SECTION
+  [FILL] 1. Your full name (hero-name)
+  [FILL] 2. Your tagline sentence
+  [FILL] 3. Profile photo — replace the
+            placeholder div with:
+            <img src="images/photo.jpg" alt="Your Name"/>
+  [FILL] 4. Social media links (href="")
+════════════════════════════════════ -->
+<section id="home">
+  <div class="hero-inner">
+
+    <div class="hero-text">
+      <p class="hero-greeting">Hi everyone, my name is</p>
+
+      <h1 class="hero-name">
+        Prabhat<span>Limbu</span>
+        <!-- [FILL] e.g.  AARAV <span>SHARMA</span> -->
+      </h1>
+
+      <p class="hero-tagline">
+        I'm a  creative student / developer / designer who loves to
+         build web apps, draw, edit videos, and bring ideas to life.
+      </p>
+
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-solid">View My Work</a>
+        <a href="#contact"  class="btn btn-outline">Contact Me</a>
+      </div>
+
+      <div class="social-row">
+        <!-- [FILL] Replace # with your actual profile URLs -->
+        <a href="" class="social-link" title="Instagram">IG</a>
+        <a href="#" class="social-link" title="Facebook">FB</a>
+        <a href="#" class="social-link" title="TikTok">TK</a>
+        <a href="https://github.com/limbuprabha" class="social-link" title="GitHub">GH</a>
+        <a href="https://www.linkedin.com/in/prabhat-limbu-09b026403/" class="social-link" title="LinkedIn">LI</a>
+      </div>
+    </div>
+
+    <!-- PROFILE PHOTO -->
+    <div class="hero-photo-wrap">
+      <!--
+        [FILL] To use your own photo, delete the div below
+        and uncomment this line (update path):
+        <img src="images/profile.jpg" alt="Your Name" />
+      -->
+      <div class="hero-photo-placeholder">
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="none"
+          stroke="rgba(255,255,255,0.35)" stroke-width="1.2">
+          <circle cx="12" cy="8" r="4"/>
+          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+        
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════
+  ABOUT SECTION
+  [FILL] 1. Replace placeholder with about photo
+  [FILL] 2. Write your bio in the <p> tags
+  [FILL] 3. Fill in the 4 fact values
+════════════════════════════════════ -->
+<section id="about">
+  <div class="section-inner reveal">
+    <p class="section-label">Who I Am</p>
+    <h2 class="section-title">About Me</h2>
+    <div class="section-divider"></div>
+
+    <div class="about-grid">
+
+      <!-- [FILL] Replace placeholder with:
+           <img src="images/about.jpg" alt="About" /> -->
+      <div class="about-img-wrap">
+        <img src="images/about.jpg" alt="About" />
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none"
+            stroke="rgba(255,255,255,0.35)" stroke-width="1.2">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          
+        </div>
+      </div>
+
+      <div class="about-text">
+        <p>
+           "I'm a passionate web developer based in Kathmandu, Nepal, currently pursuing my degree in
+          Computer Science. I love turning ideas into elegant digital experiences."
+        </p>
+        <p>
+           "When I'm not coding, you'll find me sketching or hiking the trails around the valley."
+        </p>
+
+        <div class="about-facts">
+          <div class="fact">
+            <div class="fact-label">Name</div>
+            <div class="fact-value">prabhat limbu</div>
+          </div>
+          <div class="fact">
+            <div class="fact-label">Age</div>
+            <div class="fact-value">16</div>
+          </div>
+          <div class="fact">
+            <div class="fact-label">Location</div>
+            <div class="fact-value">kathmandu,nepal</div>
+          </div>
+          <div class="fact">
+            <div class="fact-label">Education</div>
+            <div class="fact-value">SEE graduate,oracle ray academy</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════
+  SKILLS SECTION
+  [FILL] For each skill card:
+    • emoji in skill-icon
+    • skill-name  (e.g. "HTML / CSS")
+    • skill-level (Beginner / Intermediate / Advanced)
+    • skill-fill width = your % proficiency
+  Add or remove .skill-card blocks freely.
+════════════════════════════════════ -->
+<section id="skills">
+  <div class="section-inner reveal">
+    <p class="section-label">What I Know</p>
+    <h2 class="section-title">My Skills</h2>
+    <div class="section-divider"></div>
+
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <div class="skill-icon">🌐</div>
+        <div class="skill-name"> HTML / CSS</div>
+        <div class="skill-level"> Intermediate</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">⚡</div>
+        <div class="skill-name"> JavaScript</div>
+        <div class="skill-level"> Intermediate</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">🐍</div>
+        <div class="skill-name"> Python</div>
+        <div class="skill-level">Beginner</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:45%"></div></div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">🎨</div>
+        <div class="skill-name"> Figma</div>
+        <div class="skill-level"></div> Advanced</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+      </div>
+
+      <!-- ADD MORE SKILL CARDS HERE — copy the block above -->
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════
+  HOBBIES SECTION
+  [FILL] For each card:
+    • hobby-emoji  (any emoji)
+    • hobby-name
+    • hobby-desc   (1 short sentence)
+  Add or remove .hobby-card blocks freely.
+════════════════════════════════════ -->
+<section id="hobbies">
+  <div class="section-inner reveal">
+    <p class="section-label">Beyond Work</p>
+    <h2 class="section-title">Hobbies</h2>
+    <div class="section-divider" style="background:var(--accent-alt)"></div>
+
+    <div class="hobbies-grid">
+
+      <div class="hobby-card">
+        <div class="hobby-emoji">🏔️</div>
+        <div class="hobby-name">Hiking Mountains</div>
+        <div class="hobby-desc">Conquering high-altitude trails and soaking in breathtaking summit views.</div>
+      </div>
+
+      <div class="hobby-card">
+        <div class="hobby-emoji">🏃</div>
+        <div class="hobby-name">Running</div>
+        <div class="hobby-desc">Hitting the road early morning to clear the mind and build endurance.</div>
+      </div>
+
+      <div class="hobby-card">
+        <div class="hobby-emoji">⚽</div>
+        <div class="hobby-name">Soccer</div>
+        <div class="hobby-desc">Playing pickup matches and following the beautiful game with passion.</div>
+      </div>
+
+      <div class="hobby-card">
+        <div class="hobby-emoji">✏️</div>
+        <div class="hobby-name">Sketching</div>
+        <div class="hobby-desc">Bringing ideas to life on paper — portraits, landscapes, and abstract doodles.</div>
+      </div>
+
+      <div class="hobby-card">
+        <div class="hobby-emoji">🎤</div>
+        <div class="hobby-name">Emceeing</div>
+        <div class="hobby-desc">Hosting events and energising crowds with confident stage presence.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ════════════════════════════════════
+  CONTACT SECTION
+  [FILL] 1. Email address (×2 below)
+  [FILL] 2. Phone number
+  [FILL] 3. Your city / country
+  [FILL] 4. Contact message blurb
+  [FILL] 5. Form action URL
+             — Free options:
+               Formspree: action="https://formspree.io/f/YOUR_ID"
+               Netlify:   add  data-netlify="true"  to <form>
+════════════════════════════════════ -->
+<section id="contact">
+  <div class="section-inner reveal">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-title">Contact Me</h2>
+    <div class="section-divider"></div>
+
+    <div class="contact-wrap">
+
+      <div class="contact-info">
+        <h3>Let's talk!</h3>
+        <p>
+          "Whether you have a project in mind, a
+          question, or just want to say hello — my inbox is always open."
+        </p>
+
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <div class="contact-detail-label">Email</div>
+            <div class="contact-detail-value">limbuprabhato@email.com</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-detail-label">Phone</div>
+            <div class="contact-detail-value"> +977-9707492427</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-detail-label">Location</div>
+            <div class="contact-detail-value">kathmandu City,nepal</div>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form" action="https://mail.google.com/mail/u/0/#inbox" method="POST">
+        <!-- [FILL] Change action="#" to your form handler URL -->
+        <div class="form-row">
+          <div class="field">
+            <label for="fname">prabhat limbu</label>
+            <input type="text" id="fname" name="name" placeholder="John Doe" required/>
+          </div>
+          <div class="field">
+            <label for="femail">limbuprabhat0@gmail.com</label>
+            <input type="email" id="femail" name="email" placeholder="john@email.com" required/>
+          </div>
+        </div>
+        <div class="field">
+          <label for="fsubject">Subject</label>
+          <input type="text" id="fsubject" name="subject" placeholder="e.g. Project Collaboration"/>
+        </div>
+        <div class="field">
+          <label for="fmsg">Message</label>
+          <textarea id="fmsg" name="message" placeholder="Write your message here..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message →</button>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════
+  FOOTER
+  [FILL] Your name in the span below
+════════════════════════════════════ -->
+<footer>
+  <p class="footer-text">
+    © 2026 <span>prabhat limbu</span> · Designed &amp; Built with ♥
+  </p>
+</footer>
+
+
+<script>
+  /* Scroll-reveal animation */
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  /* Active nav link highlight on scroll */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? '#ffffff' : 'rgba(255,255,255,.7)';
+    });
+  });
+</script>
+
+</body>
+</html>
